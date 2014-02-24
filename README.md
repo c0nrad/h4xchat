@@ -1,4 +1,4 @@
-# H4xchat
+# h4xchat
 
 A friend and I wanted a secure way to talk about some totally legal stuff. I wrote this so we could talk with resonable assurance that no one else would know our conversations. Well except for keyloggers/rootkits/and the NSA.
 
@@ -6,21 +6,24 @@ A friend and I wanted a secure way to talk about some totally legal stuff. I wro
 
 First the server needs to be run somewhere where both clients have access to. I use a digital ocean droplet.
 
-    > go run h4xServe.go
+    > ./h4xServe -h
+    Usage of ./h4xServe:
+      -port="1337": Port to host server on
+    > ./h4xServer
 
 Now you can start talking!
 
-    > go run h4xchat.go
+    > ./h4xchat -h
+    Usage of ./h4xchat:
+      -host="localhost": Host to connect to
+      -key="mysup3rs3cr3tk3y123!": The key used for encryption
+      -port="1337": Port number of host to connect to
+    > ./h4xchat
 
+## Disclaimer
 
-## Code Overview 
+As of Feb 24th, it uses RC4 for encryption. But since everyone has to be in the same place of PRNG I reset it on every message. Essentially turning my encryption into a N-time pad. Which is trvially breakable.
 
-Two components. The first is the server, and the client.
+## Contributing
 
-### Server
-
-The server is a simple echo server. It works a lot like socket.io's broadcast. If it recieves text on one socket, is forwards it to all other sockets.
-
-### Client
-
-Most of the magic happens on the client 
+Ideas? Send an email to sclarsen@mtu.edu.

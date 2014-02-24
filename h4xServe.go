@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"net"
 )
@@ -16,7 +17,11 @@ type Message struct {
 }
 
 func main() {
-	ln, err := net.Listen("tcp", ":1337")
+	var port string
+	flag.StringVar(&port, "port", "1337", "Port to host server on")
+	flag.Parse()
+
+	ln, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		panic(err)
 	}
